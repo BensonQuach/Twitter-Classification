@@ -1,0 +1,584 @@
+============================= 
+3.1 Celebrity potpourri
+============================= 
+COMMANDS USED TO ACHIEVE celeb.arff:
+
+python twtt.py /u/cs401/A1/tweets/BarackObama 3.1/BarackObama.twt
+python twtt.py /u/cs401/A1/tweets/StephenAtHome 3.1/StephenAtHome.twt 
+python twtt.py /u/cs401/A1/tweets/neiltyson 3.1/neiltyson.twt 
+python twtt.py /u/cs401/A1/tweets/shakira 3.1/shakira.twt 
+python twtt.py /u/cs401/A1/tweets/KimKardashian 3.1/KimKardashian.twt 
+python twtt.py /u/cs401/A1/tweets/aplusk 3.1/aplusk.twt 
+
+python buildarff.py Barack-Obama:3.1/BarackObama.twt 
+Stephen-Colbert:3.1/StephenAtHome.twt Ashton-Kutcher:3.1/aplusk.twt 
+Kim-Kardashian:3.1/KimKardashian.twt Neil-Tyson:3.1/neiltyson.twt 
+Shakira:3.1/shakira.twt 3.1/celeb.arff
+
+-----------------------Naive Bayes----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.bayes.NaiveBayes 
+-t 3.1/celeb.arff -o -x 10 > 3.1/DATA-naive-bayes
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2738               45.5877 %
+Incorrectly Classified Instances      3268               54.4123 %
+Kappa statistic                          0.3471
+Mean absolute error                      0.1961
+Root mean squared error                  0.3558
+Relative absolute error                 70.607  %
+Root relative squared error             95.4796 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 350 105 218  66  82 180 |   a = Barack-Obama
+  77 366 211 113  75 159 |   b = Stephen-Colbert
+  79  49 596 129  31 117 |   c = Ashton-Kutcher
+  38  45 359 464  38  57 |   d = Kim-Kardashian
+ 143 106 107 134 299 212 |   e = Neil-Tyson
+  66  41 123  68  40 663 |   f = Shakira
+
+--------------------------Decision-Trees---------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.trees.J48 
+-t 3.1/celeb.arff -o -x 10 > 3.1/DATA-decision-trees
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2795               46.5368 %
+Incorrectly Classified Instances      3211               53.4632 %
+Kappa statistic                          0.3584
+Mean absolute error                      0.1969
+Root mean squared error                  0.3772
+Relative absolute error                 70.8849 %
+Root relative squared error            101.2186 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 539 131  74  55 140  62 |   a = Barack-Obama
+ 142 471  97  81 130  80 |   b = Stephen-Colbert
+  93 115 440 194  74  85 |   c = Ashton-Kutcher
+  64  88 195 499  88  67 |   d = Kim-Kardashian
+ 194 158  73 118 321 137 |   e = Neil-Tyson
+  81  96 101  95 103 525 |   f = Shakira
+
+-------------------------------SVM----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.1/celeb.arff -o -x 10 > 3.1/DATA-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        3090               51.4486 %
+Incorrectly Classified Instances      2916               48.5514 %
+Kappa statistic                          0.4174
+Mean absolute error                      0.2449
+Root mean squared error                  0.3446
+Relative absolute error                 88.1625 %
+Root relative squared error             92.4759 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 520 157  85  62 113  64 |   a = Barack-Obama
+  87 548 115  75 119  57 |   b = Stephen-Colbert
+ 122 104 550 113  53  59 |   c = Ashton-Kutcher
+  54  80 270 474  95  28 |   d = Kim-Kardashian
+ 198 138  49  87 428 101 |   e = Neil-Tyson
+  66  95 123  75  72 570 |   f = Shakira
+---------------------------------------------------------------------
+DISCUSSION:
+
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.1/celeb.arff -o -x 10 > 3.1/3.1output.txt
+
+As shown above support vector machines (SVM) is clearly the best
+classification algorithm out of the three.  
+
+Providing results of that follows:
+
+=== Error on training data ===
+Correctly Classified Instances        3142               52.3144 %
+Incorrectly Classified Instances      2864               47.6856 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        3090               51.4486 %
+Incorrectly Classified Instances      2916               48.5514 %
+
+Decision trees follows:
+
+=== Error on training data ===
+Correctly Classified Instances        4634               77.1562 %
+Incorrectly Classified Instances      1372               22.8438 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2795               46.5368 %
+Incorrectly Classified Instances      3211               53.4632 %
+
+Naive Bayes follows:
+
+=== Error on training data ===
+Correctly Classified Instances        2754               45.8541 %
+Incorrectly Classified Instances      3252               54.1459 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2738               45.5877 %
+Incorrectly Classified Instances      3268               54.4123 %
+
+The above result indicates that the SVM had 51.4486 % chance of identifying
+the instances correctly of the validation data. Similarily following with 
+Decision trees (46.5368 %) and Naive Bayes (45.5877 %).
+
+In terms of Error on training data, for SVM it shows that at the end
+of training with the given data it hit 52.3144% of the time.
+Comparing this with its cross-validation result it shows that there
+was not much overfitting occurring.  This follows similarily with
+Naive Bayes.
+
+However, for the Decision trees' error on training data result, we can
+see that at the end of training, it hit 77.1562% of the time.
+Following up with Decision trees' cross-validation (46.5368 %) results
+we can see that it overfitted a lot! i.e. it got too use to the training
+data and it couldn't generalize to the validation data.
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.2 Pop stars
+============================= 
+COMMANDS USED TO ACHIEVE popstars.arff:
+
+python twtt.py /u/cs401/A1/tweets/britneyspears 3.2/britneyspears.twt 
+python twtt.py /u/cs401/A1/tweets/justinbieber 3.2/justinbieber.twt 
+python twtt.py /u/cs401/A1/tweets/katyperry 3.2/katyperry.twt 
+python twtt.py /u/cs401/A1/tweets/ladygaga 3.2/ladygaga.twt 
+python twtt.py /u/cs401/A1/tweets/rihanna 3.2/rihanna.twt 
+python twtt.py /u/cs401/A1/tweets/taylorswift13 3.2/taylorswift13.twt
+
+python buildarff.py Britney-Spears:3.2/britneyspears.twt 
+Justin-Bieber:3.2/justinbieber.twt Katy-Perry:3.2/katyperry.twt 
+Lady-Gaga:3.2/ladygaga.twt Rihanna:3.2/rihanna.twt 
+Taylor-Swift:3.2/taylorswift13.twt 3.2/popstars.arff
+
+----------------------SVM-10-fold---------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.2/popstars.arff -o -x 10 > 3.2/DATA-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2518               41.9247 %
+Incorrectly Classified Instances      3488               58.0753 %
+Kappa statistic                          0.3031
+Mean absolute error                      0.251 
+Root mean squared error                  0.3534
+Relative absolute error                 90.3656 %
+Root relative squared error             94.8387 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 736  82  23  50  36  74 |   a = Britney-Spears
+ 142 478  67  70 147  97 |   b = Justin-Bieber
+  81 237 258 118 213  94 |   c = Katy-Perry
+ 128 196  90 291 140 156 |   d = Lady-Gaga
+  55 267 142  86 380  71 |   e = Rihanna
+ 158 183  63 125  97 375 |   f = Taylor-Swift
+---------------------------------------------------------------------
+DISCUSSION:
+
+Compared to section 3.1's SVM accuracy, the accuracy fell by approximately 
+9.5239%. This is because it had more trouble generalizing. And from the
+classifier's point of view, pop stars are harder to classify than 
+celebrities.
+
+Now, instead of 10-fold cross-validation (which is usually used to estimate
+the performance of a predictive model), we use itself as the training set 
+and as a test set giving the following:
+
+COMMAND USED: 
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.2/popstars.arff -T 3.2/popstars.arff -o -no-cv > 3.2/3.2output.txt
+
+=== Error on training data ===
+Correctly Classified Instances        2562               42.6573 %
+Incorrectly Classified Instances      3444               57.3427 %
+=== Error on test data ===
+Correctly Classified Instances        2562               42.6573 %
+Incorrectly Classified Instances      3444               57.3427 %
+
+As we can see there isn't much difference from our cross validation result:
+41.9247 %.  However, it did increase because since it overfitted on the 
+training data as expected it performed slightly better since it didn't
+have to generalize to new data.
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.3 News
+============================= 
+COMMANDS USED TO ACHIEVE news.arff:
+
+python twtt.py /u/cs401/A1/tweets/CBCNews 3.3/CBCNews.twt 
+python twtt.py /u/cs401/A1/tweets/cnn 3.3/cnn.twt
+python twtt.py /u/cs401/A1/tweets/torontostarnews 3.3/torontostarnews.twt
+python twtt.py /u/cs401/A1/tweets/Reuters 3.3/Reuters.twt
+python twtt.py /u/cs401/A1/tweets/nytimes 3.3/nytimes.twt
+python twtt.py /u/cs401/A1/tweets/TheOnion 3.3/TheOnion.twt
+
+python buildarff.py CBC:3.3/CBCNews.twt CNN:3.3/cnn.twt 
+Toronto-Star:3.3/torontostarnews.twt Reuters:3.3/Reuters.twt 
+New-York-Times:3.3/nytimes.twt The-Onion:3.3/TheOnion.twt 3.3/news.arff
+
+----------------------SVM-10-fold---------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO -t 3.3/news.arff -o -x 10 > 3.3/DATA-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2280               37.962  %
+Incorrectly Classified Instances      3726               62.038  %
+Kappa statistic                          0.2555
+Mean absolute error                      0.2546
+Root mean squared error                  0.3584
+Relative absolute error                 91.6563 %
+Root relative squared error             96.1776 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 635 147  45  49  92  33 |   a = CBC
+ 233 406  79  86 107  90 |   b = CNN
+ 390 152 207  60 123  69 |   c = Toronto-Star
+ 307 186  76 211 154  67 |   d = Reuters
+ 169 116  52  63 484 117 |   e = New-York-Times
+ 135 140  70  69 250 337 |   f = The-Onion
+
+=====Precision====
+CBC: 		635 / (635 + 233 + 390 + 307 + 169 + 135) = 33.9753% 
+CNN: 		406 / (147 + 406 + 152 + 186 + 116 + 140) = 35.3967% 
+Toronto-Star:	207 / (45 + 79 + 207 + 76 + 52 + 70) = 39.1304% 
+Reuters:	211 / (49 + 86 + 60 + 211 + 63 + 69) = 39.2193% 
+New-York-Times: 484 / (92 + 107 + 123 + 154 + 484 + 250) = 40.0% 
+The-Onion:	337 / (33 + 90 + 69 + 67 + 117 + 337) = 47.2651%
+
+=====Recall====
+CBC:		635 / (635 + 147 + 45 + 49 + 92 + 33) = 63.4366%
+CNN:		406 / (233 + 406 + 79 + 86 + 107 + 90) = 40.5594%
+Toronto-Star: 	207 / (390 + 152 + 207 + 60 + 123 + 69) = 20.6793%
+Reuters:	211 / (307 + 186 + 76 + 211 + 154 + 67) = 21.0789%
+New-York-Times: 484 / (169 + 116 + 52 + 63 + 484 + 117) = 48.3516%
+The-Onion:	337 / (135 + 140 + 70 + 69 + 250 + 337) = 33.6663%
+
+---------------------------------------------------------------------
+DISCUSSION:
+
+Since the accuracy of the SVM-10-fold cv led to result of:
+Correctly Classified Instances        2280               37.962  %
+
+It shows that news feeds are harder to distinguish from each other as
+compared to distinguishing popstars.
+
+Let K be any of those classes CBC, CNN,...
+
+If we look at the <precisions> respectively, it represents the percentage
+of cases classified as K that truly are K.  For example, if we look at
+CNN, we can see that 147 cases were classifed as CNN when it should've
+been classified as CBC. (Looking at the 2nd column)
+
+	Let B be the class we're currently considering.
+Formula is: (count of cases classified as itself(B) correctly) divided by
+	    (sum total of all cases classifying to B of all classes)
+
+If we look at the <recalls> respectively, it represents the percentage of
+cases that are truly K that were classified as K.  For example, if we 
+look at CBC, we can see that 147 cases that were truly CBC's were 
+classified as CNN. 
+
+	Let B be the class we're currently considering.
+Formula is: (count of cases classified as itself(B) correctly) divided by
+	    (sum total of all cases classifying to any class made by B)
+
+(Precision) The-Onion appears to have the highest percentage of precision
+meaning it's the most "not incorrectly classified" by the all the other classes.
+The least in terms of Precision is CBC.
+
+(Recall) CBC appears to have the highest percentage of cases 
+where it was able to distinguish itself among the other classes.  However, as we
+can see the other classes have a good portion of cases classifying incorrectly to
+CBC. The least in terms of Recall is Toronto-Star.
+
+Thus, The-Onion is the most distinct and CBC is the least distinct since many
+of the other classes seem to incorrectly classify their cases towards it.
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.4 Pop stars versus news
+============================= 
+COMMANDS USED TO ACHIEVE popvsnews arff files:
+
+python buildarff.py pop-stars:3.2/britneyspears.twt+3.2/justinbieber.twt+3.2/katyperry.twt+3.2/ladygaga.twt+3.2/rihanna.twt+3.2/taylorswift13.twt news-feed:3.3/CBCNews.twt+3.3/cnn.twt+3.3/torontostarnews.twt+3.3/Reuters.twt+3.3/nytimes.twt+3.3/TheOnion.twt 3.4/pop-vs-news.arff
+
+python buildarff.py -500 pop-stars:3.2/britneyspears.twt+3.2/justinbieber.twt+3.2/katyperry.twt+3.2/ladygaga.twt+3.2/rihanna.twt+3.2/taylorswift13.twt news-feed:3.3/CBCNews.twt+3.3/cnn.twt+3.3/torontostarnews.twt+3.3/Reuters.twt+3.3/nytimes.twt+3.3/TheOnion.twt 3.4/500-pop-vs-news.arff
+
+python buildarff.py -250 pop-stars:3.2/britneyspears.twt+3.2/justinbieber.twt+3.2/katyperry.twt+3.2/ladygaga.twt+3.2/rihanna.twt+3.2/taylorswift13.twt news-feed:3.3/CBCNews.twt+3.3/cnn.twt+3.3/torontostarnews.twt+3.3/Reuters.twt+3.3/nytimes.twt+3.3/TheOnion.twt 3.4/250-pop-vs-news.arff
+
+----------------Complete-SVM-10-fold---------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO
+-t 3.4/pop-vs-news.arff -o -x 10 > 3.4/DATA-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances       10639               88.5698 %
+Incorrectly Classified Instances      1373               11.4302 %
+Kappa statistic                          0.7714
+Mean absolute error                      0.1143
+Root mean squared error                  0.3381
+Relative absolute error                 22.8605 %
+Root relative squared error             67.6173 %
+Total Number of Instances            12012     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5180  826 |    a = pop-stars
+  547 5459 |    b = news-feed
+
+-------------------500-SVM-10-fold-----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.4/500-pop-vs-news.arff -o -x 10 > 3.4/DATA-500-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        5314               88.5667 %
+Incorrectly Classified Instances       686               11.4333 %
+Kappa statistic                          0.7713
+Mean absolute error                      0.1143
+Root mean squared error                  0.3381
+Relative absolute error                 22.8667 %
+Root relative squared error             67.6264 %
+Total Number of Instances             6000     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2590  410 |    a = pop-stars
+  276 2724 |    b = news-feed
+
+-------------------250-SVM-10-fold-----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.4/250-pop-vs-news.arff -o -x 10 > 3.4/DATA-250-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2672               89.0667 %
+Incorrectly Classified Instances       328               10.9333 %
+Kappa statistic                          0.7813
+Mean absolute error                      0.1093
+Root mean squared error                  0.3307
+Relative absolute error                 21.8667 %
+Root relative squared error             66.1312 %
+Total Number of Instances             3000     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1310  190 |    a = pop-stars
+  138 1362 |    b = news-feed
+---------------------------------------------------------------------
+COMMAND USED for 3.4output.txt:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.4/500-pop-vs-news.arff -o -x 10 > 3.4/3.4output.txt
+
+DISCUSSION:
+The accuracy completely trumps the previous sections with 88.5698 %.
+However, this comparison is valid since the pop stars style of 
+language usage is obviously much more different than news and as such
+will give a higher percentage because their more distinct from each other.
+
+In terms of the first 500 from each file.  There was close to no difference
+in performance.  Hitting approximately 88-89%.
+
+Judging from the first 250 result, the first 500 result, and the entire file 
+result's percentage of accuracy.  I believe getting more twitter data would 
+not greatly improve performance as decrementing the amount of data still led 
+to a more or less consistent result.
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.5 Feature analysis
+============================= 
+
+---------------------------------------------------------------------
+TASK 1:
+sh /u/cs401/WEKA/infogain.sh 3.1/celeb.arff > 3.5/INFO-GAIN-celeb
+
+Ranked attributes:
+ 0.1569    18 avg_sent_len
+ 0.14547   12 common_noun
+ 0.11059   19 avg_token_len
+ 0.10444   13 proper_noun
+ 0.10345   20 num_of_sent
+ 0.10291    9 dash
+ 0.09753    7 comma
+ 0.09541    8 colon
+ 0.08242   14 adverb
+ 0.07305   16 slang
+ 0.05269    1 1st_person_pro
+ 0.02808    3 3rd_person_pro
+ 0.02555    5 past_verb
+ 0.02333    2 2nd_person_pro
+ 0.02196   10 parenthese
+ 0.02121   17 all_upper_word
+ 0.02026    4 coord_conj
+ 0.01874   11 ellipse
+ 0.01833   15 wh_word
+ 0.00702    6 future_tense
+
+INDIVIDUAL DISCUSSION:
+
+Specifically for this example, we can see that slang is ranked higher.  
+This makes sense since celebrities tend to use slang more so than for 
+example news.
+
+---------------------------------------------------------------------
+TASK 2:
+sh /u/cs401/WEKA/infogain.sh 3.2/popstars.arff > 3.5/INFO-GAIN-popstars
+
+Ranked attributes:
+ 0.19624    9 dash
+ 0.07626   19 avg_token_len
+ 0.07501   13 proper_noun
+ 0.07355   20 num_of_sent
+ 0.06909   18 avg_sent_len
+ 0.05993   12 common_noun
+ 0.04962   17 all_upper_word
+ 0.04097    7 comma
+ 0.02844   11 ellipse
+ 0.02426   10 parenthese
+ 0.02166    8 colon
+ 0.01922   16 slang
+ 0.01362    5 past_verb
+ 0.01082   14 adverb
+ 0.00936    2 2nd_person_pro
+ 0.00849    1 1st_person_pro
+ 0.0051     4 coord_conj
+ 0.00488    6 future_tense
+ 0.00273    3 3rd_person_pro
+ 0         15 wh_word
+
+INDIVIDUAL DISCUSSION:
+
+Dashes are ranked higher and one reason for this could possibly be the 
+use emoticons.
+
+Similarily with slang in TASK 1.
+
+Reasons for the wh_word feature ranking the lowest is because popstars
+tend to report facts about themselves and not about others.  Words with
+"wh" tends to involve others and or things.
+
+---------------------------------------------------------------------
+TASK 3:
+sh /u/cs401/WEKA/infogain.sh 3.3/news.arff > 3.5/3.5output.txt
+
+Ranked attributes:
+ 0.08891   13 proper_noun
+ 0.0883    18 avg_sent_len
+ 0.0677    12 common_noun
+ 0.05593   19 avg_token_len
+ 0.0368     8 colon
+ 0.03257   17 all_upper_word
+ 0.02636   14 adverb
+ 0.02374   20 num_of_sent
+ 0.01662    3 3rd_person_pro
+ 0.01585    2 2nd_person_pro
+ 0.01424    1 1st_person_pro
+ 0.01413   11 ellipse
+ 0.01344    7 comma
+ 0.0125     4 coord_conj
+ 0.01142   15 wh_word
+ 0.00713   10 parenthese
+ 0.00594    9 dash
+ 0.0052     5 past_verb
+ 0         16 slang
+ 0          6 future_tense
+
+INDIVIDUAL DISCUSSION:
+
+Proper nouns makes sense since news tends to report with names of individuals,
+organizations, institutions... etc.  This follows similarily with all_upper_words.
+
+Here we can see that slang was an extremely irrelevant feature since 
+news tends to have a strict formal tone.  Future tense is also irrelevant
+since news tends to have a strict past tense form with some situations with
+present tense tone. 
+
+---------------------------------------------------------------------
+TASK 4:
+sh /u/cs401/WEKA/infogain.sh 3.4/pop-vs-news.arff > 3.5/INFO-GAIN-pop-vs-news
+
+Ranked attributes:
+ 0.38726   19 avg_token_len
+ 0.21291   18 avg_sent_len
+ 0.21202   20 num_of_sent
+ 0.15288    1 1st_person_pro
+ 0.11037    2 2nd_person_pro
+ 0.10317   14 adverb
+ 0.0947    16 slang
+ 0.08427   13 proper_noun
+ 0.06991   12 common_noun
+ 0.06341   11 ellipse
+ 0.03999    4 coord_conj
+ 0.03672   17 all_upper_word
+ 0.03653    5 past_verb
+ 0.03535    3 3rd_person_pro
+ 0.03322   10 parenthese
+ 0.01493   15 wh_word
+ 0.01247    6 future_tense
+ 0.00836    7 comma
+ 0.00751    9 dash
+ 0.006      8 colon
+
+---------------------------------------------------------------------
+
+DISCUSSION:
+
+avg_token_len was especially useful in all tasks.
+
+Focusing on the top 10 of each task. The following features seem to be 
+the most informative:
+
+avg_token_len, avg_sent_len, num_of_sent, proper_noun, common_noun
+
+This makes sense because provided any set of tweets they tend to have at least a
+count to each of these features respectively.  A good example that doesn't 
+follow is slang, where it was seen mostly in the ones involving pop stars 
+and celebrities.
+
+I believe that the wh_word feature is at the bottom of all the list of 
+attirbutes (generally) is because people tend to tweet of themselves and 
+not about others.
+
+I believe that the future_tense feature is at the bottom of all the list of
+attributes (generally) is because people tend to tweet of the present or past in
+general.
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________

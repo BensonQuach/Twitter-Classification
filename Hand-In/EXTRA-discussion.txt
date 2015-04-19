@@ -1,0 +1,527 @@
+NOTE: 
+Although the accuracy didn't increase I did follow through with the 
+entire process in hopes that it'll give me some part marks for 
+attempting this process.  The other results can be found below.
+
+============================= 
+3.1 Celebrity potpourri
+============================= 
+
+DISCUSSION:
+
+As shown before support vector machines (SVM) is clearly the best
+classification algorithm out of the three.  
+
+Providing results of that follows:
+
+=== Error on training data ===
+Correctly Classified Instances        3142               52.3144 %
+Incorrectly Classified Instances      2864               47.6856 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        3090               51.4486 %
+Incorrectly Classified Instances      2916               48.5514 %
+
+Decision trees follows:
+
+=== Error on training data ===
+Correctly Classified Instances        4634               77.1562 %
+Incorrectly Classified Instances      1372               22.8438 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2795               46.5368 %
+Incorrectly Classified Instances      3211               53.4632 %
+
+Naive Bayes follows:
+
+=== Error on training data ===
+Correctly Classified Instances        2754               45.8541 %
+Incorrectly Classified Instances      3252               54.1459 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2738               45.5877 %
+Incorrectly Classified Instances      3268               54.4123 %
+
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+
+Providing results of that follows (SVM):
+
+=== Error on training data ===
+Correctly Classified Instances        3124               52.0147 %
+Incorrectly Classified Instances      2882               47.9853 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        3077               51.2321 %
+Incorrectly Classified Instances      2929               48.7679 %
+
+Decision trees follows:
+
+=== Error on training data ===
+Correctly Classified Instances        4578               76.2238 %
+Incorrectly Classified Instances      1428               23.7762 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2828               47.0862 %
+Incorrectly Classified Instances      3178               52.9138 %
+
+Naive Bayes follows:
+
+=== Error on training data ===
+Correctly Classified Instances        2741               45.6377 %
+Incorrectly Classified Instances      3265               54.3623 %
+=== Stratified cross-validation ===
+Correctly Classified Instances        2726               45.3879 %
+Incorrectly Classified Instances      3280               54.6121 %
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.2 Pop stars
+============================= 
+
+----------------------SVM-10-fold---------------------------------
+=== Stratified cross-validation ===
+Correctly Classified Instances        2518               41.9247 %
+Incorrectly Classified Instances      3488               58.0753 %
+
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+=== Stratified cross-validation ===
+Correctly Classified Instances        2525               42.0413 %
+Incorrectly Classified Instances      3481               57.9587 %
+---------------------------------------------------------------------
+DISCUSSION:
+
+Now, instead of 10-fold cross-validation (which is usually used to estimate
+the performance of a predictive model), we use itself as the training set 
+and as a test set giving the following:
+
+=== Error on training data ===
+Correctly Classified Instances        2562               42.6573 %
+Incorrectly Classified Instances      3444               57.3427 %
+=== Error on test data ===
+Correctly Classified Instances        2562               42.6573 %
+Incorrectly Classified Instances      3444               57.3427 %
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+=== Error on training data ===
+Correctly Classified Instances        2552               42.4908 %
+Incorrectly Classified Instances      3454               57.5092 %
+=== Error on test data ===
+Correctly Classified Instances        2552               42.4908 %
+Incorrectly Classified Instances      3454               57.5092 %
+
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.3 News
+============================= 
+
+----------------------SVM-10-fold---------------------------------
+=== Stratified cross-validation ===
+Correctly Classified Instances        2280               37.962  %
+Incorrectly Classified Instances      3726               62.038  %
+Kappa statistic                          0.2555
+Mean absolute error                      0.2546
+Root mean squared error                  0.3584
+Relative absolute error                 91.6563 %
+Root relative squared error             96.1776 %
+Total Number of Instances             6006     
+
+=== Confusion Matrix ===
+   a   b   c   d   e   f   <-- classified as
+ 635 147  45  49  92  33 |   a = CBC
+ 233 406  79  86 107  90 |   b = CNN
+ 390 152 207  60 123  69 |   c = Toronto-Star
+ 307 186  76 211 154  67 |   d = Reuters
+ 169 116  52  63 484 117 |   e = New-York-Times
+ 135 140  70  69 250 337 |   f = The-Onion
+
+=====Precision====
+CBC: 		635 / (635 + 233 + 390 + 307 + 169 + 135) = 33.9753% 
+CNN: 		406 / (147 + 406 + 152 + 186 + 116 + 140) = 35.3967% 
+Toronto-Star:	207 / (45 + 79 + 207 + 76 + 52 + 70) = 39.1304% 
+Reuters:	211 / (49 + 86 + 60 + 211 + 63 + 69) = 39.2193% 
+New-York-Times: 484 / (92 + 107 + 123 + 154 + 484 + 250) = 40.0% 
+The-Onion:	337 / (33 + 90 + 69 + 67 + 117 + 337) = 47.2651%
+
+=====Recall====
+CBC:		635 / (635 + 147 + 45 + 49 + 92 + 33) = 63.4366%
+CNN:		406 / (233 + 406 + 79 + 86 + 107 + 90) = 40.5594%
+Toronto-Star: 	207 / (390 + 152 + 207 + 60 + 123 + 69) = 20.6793%
+Reuters:	211 / (307 + 186 + 76 + 211 + 154 + 67) = 21.0789%
+New-York-Times: 484 / (169 + 116 + 52 + 63 + 484 + 117) = 48.3516%
+The-Onion:	337 / (135 + 140 + 70 + 69 + 250 + 337) = 33.6663%
+
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+=== Stratified cross-validation ===
+Correctly Classified Instances        2283               38.012  %
+Incorrectly Classified Instances      3723               61.988  %
+Kappa statistic                          0.2561
+Mean absolute error                      0.2547
+Root mean squared error                  0.3586
+Relative absolute error                 91.687  %
+Root relative squared error             96.2104 %
+Total Number of Instances             6006     
+
+=== Detailed Accuracy By Class ===
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.62      0.244      0.338     0.62      0.437      0.739    CBC
+                 0.418     0.15       0.357     0.418     0.385      0.725    CNN
+                 0.21      0.063      0.4       0.21      0.275      0.663    Toronto-Star
+                 0.214     0.065      0.396     0.214     0.278      0.617    Reuters
+                 0.482     0.146      0.398     0.482     0.436      0.744    New-York-Times
+                 0.338     0.076      0.471     0.338     0.393      0.736    The-Onion
+Weighted Avg.    0.38      0.124      0.393     0.38      0.367      0.704
+
+=== Confusion Matrix ===
+   a   b   c   d   e   f   <-- classified as
+ 621 158  45  50  91  36 |   a = CBC
+ 223 418  70  90 111  89 |   b = CNN
+ 390 154 210  57 121  69 |   c = Toronto-Star
+ 307 184  74 214 153  69 |   d = Reuters
+ 164 120  57  61 482 117 |   e = New-York-Times
+ 135 136  69  69 254 338 |   f = The-Onion
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.4 Pop stars versus news
+============================= 
+
+----------------Complete-SVM-10-fold---------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO
+-t 3.4/pop-vs-news.arff -o -x 10 > 3.4/DATA-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances       10639               88.5698 %
+Incorrectly Classified Instances      1373               11.4302 %
+Kappa statistic                          0.7714
+Mean absolute error                      0.1143
+Root mean squared error                  0.3381
+Relative absolute error                 22.8605 %
+Root relative squared error             67.6173 %
+Total Number of Instances            12012     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5180  826 |    a = pop-stars
+  547 5459 |    b = news-feed
+
+-------------------500-SVM-10-fold-----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.4/500-pop-vs-news.arff -o -x 10 > 3.4/DATA-500-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        5314               88.5667 %
+Incorrectly Classified Instances       686               11.4333 %
+Kappa statistic                          0.7713
+Mean absolute error                      0.1143
+Root mean squared error                  0.3381
+Relative absolute error                 22.8667 %
+Root relative squared error             67.6264 %
+Total Number of Instances             6000     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2590  410 |    a = pop-stars
+  276 2724 |    b = news-feed
+
+-------------------250-SVM-10-fold-----------------------------------
+COMMAND USED:
+java -cp /u/cs401/WEKA/weka.jar weka.classifiers.functions.SMO 
+-t 3.4/250-pop-vs-news.arff -o -x 10 > 3.4/DATA-250-support-vector-machines
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2672               89.0667 %
+Incorrectly Classified Instances       328               10.9333 %
+Kappa statistic                          0.7813
+Mean absolute error                      0.1093
+Root mean squared error                  0.3307
+Relative absolute error                 21.8667 %
+Root relative squared error             66.1312 %
+Total Number of Instances             3000     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1310  190 |    a = pop-stars
+  138 1362 |    b = news-feed
+
+
+
+
+
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+
+----------------Complete-SVM-10-fold---------------------------------
+=== Stratified cross-validation ===
+
+Correctly Classified Instances       10634               88.5281 %
+Incorrectly Classified Instances      1378               11.4719 %
+Kappa statistic                          0.7706
+Mean absolute error                      0.1147
+Root mean squared error                  0.3387
+Relative absolute error                 22.9437 %
+Root relative squared error             67.7403 %
+Total Number of Instances            12012     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 5177  829 |    a = pop-stars
+  549 5457 |    b = news-feed
+
+-------------------500-SVM-10-fold-----------------------------------
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        5315               88.5833 %
+Incorrectly Classified Instances       685               11.4167 %
+Kappa statistic                          0.7717
+Mean absolute error                      0.1142
+Root mean squared error                  0.3379
+Relative absolute error                 22.8333 %
+Root relative squared error             67.5771 %
+Total Number of Instances             6000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 2589  411 |    a = pop-stars
+  274 2726 |    b = news-feed
+
+-------------------250-SVM-10-fold-----------------------------------
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2673               89.1    %
+Incorrectly Classified Instances       327               10.9    %
+Kappa statistic                          0.782 
+Mean absolute error                      0.109 
+Root mean squared error                  0.3302
+Relative absolute error                 21.8    %
+Root relative squared error             66.0303 %
+Total Number of Instances             3000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1311  189 |    a = pop-stars
+  138 1362 |    b = news-feed
+
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________
+
+============================= 
+3.5 Feature analysis
+============================= 
+
+---------------------------------------------------------------------
+TASK 1:
+sh /u/cs401/WEKA/infogain.sh 3.1/celeb.arff > 3.5/INFO-GAIN-celeb
+
+Ranked attributes:
+ 0.1569    18 avg_sent_len
+ 0.14547   12 common_noun
+ 0.11059   19 avg_token_len
+ 0.10444   13 proper_noun
+ 0.10345   20 num_of_sent
+ 0.10291    9 dash
+ 0.09753    7 comma
+ 0.09541    8 colon
+ 0.08242   14 adverb
+ 0.07305   16 slang
+ 0.05269    1 1st_person_pro
+ 0.02808    3 3rd_person_pro
+ 0.02555    5 past_verb
+ 0.02333    2 2nd_person_pro
+ 0.02196   10 parenthese
+ 0.02121   17 all_upper_word
+ 0.02026    4 coord_conj
+ 0.01874   11 ellipse
+ 0.01833   15 wh_word
+ 0.00702    6 future_tense
+
+---------------------------------------------------------------------
+TASK 2:
+sh /u/cs401/WEKA/infogain.sh 3.2/popstars.arff > 3.5/INFO-GAIN-popstars
+
+Ranked attributes:
+ 0.19624    9 dash
+ 0.07626   19 avg_token_len
+ 0.07501   13 proper_noun
+ 0.07355   20 num_of_sent
+ 0.06909   18 avg_sent_len
+ 0.05993   12 common_noun
+ 0.04962   17 all_upper_word
+ 0.04097    7 comma
+ 0.02844   11 ellipse
+ 0.02426   10 parenthese
+ 0.02166    8 colon
+ 0.01922   16 slang
+ 0.01362    5 past_verb
+ 0.01082   14 adverb
+ 0.00936    2 2nd_person_pro
+ 0.00849    1 1st_person_pro
+ 0.0051     4 coord_conj
+ 0.00488    6 future_tense
+ 0.00273    3 3rd_person_pro
+ 0         15 wh_word
+
+---------------------------------------------------------------------
+TASK 3:
+sh /u/cs401/WEKA/infogain.sh 3.3/news.arff > 3.5/3.5output.txt
+
+Ranked attributes:
+ 0.08891   13 proper_noun
+ 0.0883    18 avg_sent_len
+ 0.0677    12 common_noun
+ 0.05593   19 avg_token_len
+ 0.0368     8 colon
+ 0.03257   17 all_upper_word
+ 0.02636   14 adverb
+ 0.02374   20 num_of_sent
+ 0.01662    3 3rd_person_pro
+ 0.01585    2 2nd_person_pro
+ 0.01424    1 1st_person_pro
+ 0.01413   11 ellipse
+ 0.01344    7 comma
+ 0.0125     4 coord_conj
+ 0.01142   15 wh_word
+ 0.00713   10 parenthese
+ 0.00594    9 dash
+ 0.0052     5 past_verb
+ 0         16 slang
+ 0          6 future_tense
+
+---------------------------------------------------------------------
+TASK 4:
+sh /u/cs401/WEKA/infogain.sh 3.4/pop-vs-news.arff > 3.5/INFO-GAIN-pop-vs-news
+
+Ranked attributes:
+ 0.38726   19 avg_token_len
+ 0.21291   18 avg_sent_len
+ 0.21202   20 num_of_sent
+ 0.15288    1 1st_person_pro
+ 0.11037    2 2nd_person_pro
+ 0.10317   14 adverb
+ 0.0947    16 slang
+ 0.08427   13 proper_noun
+ 0.06991   12 common_noun
+ 0.06341   11 ellipse
+ 0.03999    4 coord_conj
+ 0.03672   17 all_upper_word
+ 0.03653    5 past_verb
+ 0.03535    3 3rd_person_pro
+ 0.03322   10 parenthese
+ 0.01493   15 wh_word
+ 0.01247    6 future_tense
+ 0.00836    7 comma
+ 0.00751    9 dash
+ 0.006      8 colon
+
+
+
+-------------------------------------------------------------------
+-------------REMOVED [wh_word, future_tense] FEATURES:-------------
+
+TASK 1: INFO-GAIN-celeb
+
+Ranked attributes:
+ 0.1569  16 avg_sent_len
+ 0.1455  11 common_noun
+ 0.1106  17 avg_token_len
+ 0.1044  12 proper_noun
+ 0.1034  18 num_of_sent
+ 0.1029   8 dash
+ 0.0975   6 comma
+ 0.0954   7 colon
+ 0.0824  13 adverb
+ 0.0731  14 slang
+ 0.0527   1 1st_person_pro
+ 0.0281   3 3rd_person_pro
+ 0.0255   5 past_verb
+ 0.0233   2 2nd_person_pro
+ 0.022    9 parenthese
+ 0.0212  15 all_upper_word
+ 0.0203   4 coord_conj
+ 0.0187  10 ellipse
+
+---------------------------------------------------------------------
+TASK 2: INFO-GAIN-popstars
+
+Ranked attributes:
+ 0.19624   8 dash
+ 0.07626  17 avg_token_len
+ 0.07501  12 proper_noun
+ 0.07355  18 num_of_sent
+ 0.06909  16 avg_sent_len
+ 0.05993  11 common_noun
+ 0.04962  15 all_upper_word
+ 0.04097   6 comma
+ 0.02844  10 ellipse
+ 0.02426   9 parenthese
+ 0.02166   7 colon
+ 0.01922  14 slang
+ 0.01362   5 past_verb
+ 0.01082  13 adverb
+ 0.00936   2 2nd_person_pro
+ 0.00849   1 1st_person_pro
+ 0.0051    4 coord_conj
+ 0.00273   3 3rd_person_pro
+
+---------------------------------------------------------------------
+TASK 3: 3.5output2.txt
+
+Ranked attributes:
+ 0.08891  12 proper_noun
+ 0.0883   16 avg_sent_len
+ 0.0677   11 common_noun
+ 0.05593  17 avg_token_len
+ 0.0368    7 colon
+ 0.03257  15 all_upper_word
+ 0.02636  13 adverb
+ 0.02374  18 num_of_sent
+ 0.01662   3 3rd_person_pro
+ 0.01585   2 2nd_person_pro
+ 0.01424   1 1st_person_pro
+ 0.01413  10 ellipse
+ 0.01344   6 comma
+ 0.0125    4 coord_conj
+ 0.00713   9 parenthese
+ 0.00594   8 dash
+ 0.0052    5 past_verb
+ 0        14 slang
+
+---------------------------------------------------------------------
+TASK 4: INFO-GAIN-pop-vs-news
+
+Ranked attributes:
+ 0.38726  17 avg_token_len
+ 0.21291  16 avg_sent_len
+ 0.21202  18 num_of_sent
+ 0.15288   1 1st_person_pro
+ 0.11037   2 2nd_person_pro
+ 0.10317  13 adverb
+ 0.0947   14 slang
+ 0.08427  12 proper_noun
+ 0.06991  11 common_noun
+ 0.06341  10 ellipse
+ 0.03999   4 coord_conj
+ 0.03672  15 all_upper_word
+ 0.03653   5 past_verb
+ 0.03535   3 3rd_person_pro
+ 0.03322   9 parenthese
+ 0.00836   6 comma
+ 0.00751   8 dash
+ 0.006     7 colon
+
+______________________________________________________________________________________________
+______________________________________________________________________________________________

@@ -1,0 +1,42 @@
+
+Time taken to build model: 0.57 seconds
+Time taken to test model on training data: 0.12 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2672               89.0667 %
+Incorrectly Classified Instances       328               10.9333 %
+Kappa statistic                          0.7813
+Mean absolute error                      0.1093
+Root mean squared error                  0.3307
+Relative absolute error                 21.8667 %
+Root relative squared error             66.1312 %
+Total Number of Instances             3000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1312  188 |    a = pop-stars
+  140 1360 |    b = news-feed
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2672               89.0667 %
+Incorrectly Classified Instances       328               10.9333 %
+Kappa statistic                          0.7813
+Mean absolute error                      0.1093
+Root mean squared error                  0.3307
+Relative absolute error                 21.8667 %
+Root relative squared error             66.1312 %
+Total Number of Instances             3000     
+
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 1310  190 |    a = pop-stars
+  138 1362 |    b = news-feed
+

@@ -1,0 +1,32 @@
+
+
+=== Attribute Selection on all input data ===
+
+Search Method:
+	Attribute ranking.
+
+Attribute Evaluator (supervised, Class (nominal): 19 twit):
+	Information Gain Ranking Filter
+
+Ranked attributes:
+ 0.08891  12 proper_noun
+ 0.0883   16 avg_sent_len
+ 0.0677   11 common_noun
+ 0.05593  17 avg_token_len
+ 0.0368    7 colon
+ 0.03257  15 all_upper_word
+ 0.02636  13 adverb
+ 0.02374  18 num_of_sent
+ 0.01662   3 3rd_person_pro
+ 0.01585   2 2nd_person_pro
+ 0.01424   1 1st_person_pro
+ 0.01413  10 ellipse
+ 0.01344   6 comma
+ 0.0125    4 coord_conj
+ 0.00713   9 parenthese
+ 0.00594   8 dash
+ 0.0052    5 past_verb
+ 0        14 slang
+
+Selected attributes: 12,16,11,17,7,15,13,18,3,2,1,10,6,4,9,8,5,14 : 18
+

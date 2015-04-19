@@ -1,0 +1,50 @@
+
+Time taken to build model: 0.16 seconds
+Time taken to test model on training data: 0.8 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        1969               32.7839 %
+Incorrectly Classified Instances      4037               67.2161 %
+Kappa statistic                          0.1934
+Mean absolute error                      0.2363
+Root mean squared error                  0.3797
+Relative absolute error                 85.0707 %
+Root relative squared error            101.8723 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 750  51  61  59  48  32 |   a = CBC
+ 349 224  98 130  90 110 |   b = CNN
+ 537  75 168  85  80  56 |   c = Toronto-Star
+ 454  90 118 200  91  48 |   d = Reuters
+ 349  78  68  64 354  88 |   e = New-York-Times
+ 262 120 104  60 182 273 |   f = The-Onion
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        1937               32.2511 %
+Incorrectly Classified Instances      4069               67.7489 %
+Kappa statistic                          0.187 
+Mean absolute error                      0.2381
+Root mean squared error                  0.382 
+Relative absolute error                 85.726  %
+Root relative squared error            102.4959 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 750  52  58  62  47  32 |   a = CBC
+ 342 209 106 135  89 120 |   b = CNN
+ 540  73 165  89  80  54 |   c = Toronto-Star
+ 452  88 125 196  89  51 |   d = Reuters
+ 354  83  77  64 335  88 |   e = New-York-Times
+ 262 115 117  62 163 282 |   f = The-Onion
+

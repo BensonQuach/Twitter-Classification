@@ -1,0 +1,31 @@
+@relation twit_classification
+
+@attribute 1st_person_pro numeric
+@attribute 2nd_person_pro numeric
+@attribute 3rd_person_pro numeric
+@attribute coord_conj numeric
+@attribute past_verb numeric
+@attribute future_tense numeric
+@attribute comma numeric
+@attribute colon numeric
+@attribute dash numeric
+@attribute parenthese numeric
+@attribute ellipse numeric
+@attribute common_noun numeric
+@attribute proper_noun numeric
+@attribute adverb numeric
+@attribute wh_word numeric
+@attribute slang numeric
+@attribute all_upper_word numeric
+@attribute avg_sent_len numeric
+@attribute avg_token_len numeric
+@attribute num_of_sent numeric
+@attribute twit {SpecialCase.twt+SpecialCase2.twt}
+
+@data
+3,2,2,3,1,3,1,1,1,2,1,5,2,1,5,1,1,45.000000,3.313725,1,SpecialCase.twt+SpecialCase2.twt
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.000000,0.000000,0,SpecialCase.twt+SpecialCase2.twt
+0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,1,6.000000,2.625000,1,SpecialCase.twt+SpecialCase2.twt
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.000000,1.000000,1,SpecialCase.twt+SpecialCase2.twt
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.000000,1.000000,1,SpecialCase.twt+SpecialCase2.twt
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.000000,1.000000,1,SpecialCase.twt+SpecialCase2.twt

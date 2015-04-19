@@ -1,0 +1,74 @@
+
+Time taken to build model: 3.59 seconds
+Time taken to test model on training data: 0.13 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2327               38.7446 %
+Incorrectly Classified Instances      3679               61.2554 %
+Kappa statistic                          0.2649
+Mean absolute error                      0.2538
+Root mean squared error                  0.3574
+Relative absolute error                 91.382  %
+Root relative squared error             95.8895 %
+Total Number of Instances             6006     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.648     0.247      0.344     0.648     0.449      0.746    CBC
+                 0.421     0.144      0.369     0.421     0.393      0.731    CNN
+                 0.206     0.064      0.391     0.206     0.27       0.672    Toronto-Star
+                 0.219     0.066      0.397     0.219     0.282      0.627    Reuters
+                 0.485     0.14       0.409     0.485     0.443      0.75     New-York-Times
+                 0.347     0.073      0.487     0.347     0.405      0.747    The-Onion
+Weighted Avg.    0.387     0.123      0.399     0.387     0.374      0.712
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 649 143  42  51  83  33 |   a = CBC
+ 227 421  76  90 102  85 |   b = CNN
+ 398 144 206  59 122  72 |   c = Toronto-Star
+ 301 186  81 219 153  61 |   d = Reuters
+ 179 112  46  65 485 114 |   e = New-York-Times
+ 133 136  76  67 242 347 |   f = The-Onion
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2280               37.962  %
+Incorrectly Classified Instances      3726               62.038  %
+Kappa statistic                          0.2555
+Mean absolute error                      0.2546
+Root mean squared error                  0.3584
+Relative absolute error                 91.6563 %
+Root relative squared error             96.1776 %
+Total Number of Instances             6006     
+
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.634     0.247      0.34      0.634     0.443      0.741    CBC
+                 0.406     0.148      0.354     0.406     0.378      0.725    CNN
+                 0.207     0.064      0.391     0.207     0.271      0.662    Toronto-Star
+                 0.211     0.065      0.392     0.211     0.274      0.617    Reuters
+                 0.484     0.145      0.4       0.484     0.438      0.744    New-York-Times
+                 0.337     0.075      0.473     0.337     0.393      0.739    The-Onion
+Weighted Avg.    0.38      0.124      0.392     0.38      0.366      0.705
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 635 147  45  49  92  33 |   a = CBC
+ 233 406  79  86 107  90 |   b = CNN
+ 390 152 207  60 123  69 |   c = Toronto-Star
+ 307 186  76 211 154  67 |   d = Reuters
+ 169 116  52  63 484 117 |   e = New-York-Times
+ 135 140  70  69 250 337 |   f = The-Onion
+

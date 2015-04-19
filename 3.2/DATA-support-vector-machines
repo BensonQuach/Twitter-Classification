@@ -1,0 +1,50 @@
+
+Time taken to build model: 4.58 seconds
+Time taken to test model on training data: 0.21 seconds
+
+=== Error on training data ===
+
+Correctly Classified Instances        2562               42.6573 %
+Incorrectly Classified Instances      3444               57.3427 %
+Kappa statistic                          0.3119
+Mean absolute error                      0.2505
+Root mean squared error                  0.3527
+Relative absolute error                 90.1712 %
+Root relative squared error             94.6361 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 732  78  19  54  35  83 |   a = Britney-Spears
+ 143 490  64  69 139  96 |   b = Justin-Bieber
+  81 245 264 113 202  96 |   c = Katy-Perry
+ 129 194  87 297 138 156 |   d = Lady-Gaga
+  54 245 150  84 397  71 |   e = Rihanna
+ 154 182  66 128  89 382 |   f = Taylor-Swift
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        2518               41.9247 %
+Incorrectly Classified Instances      3488               58.0753 %
+Kappa statistic                          0.3031
+Mean absolute error                      0.251 
+Root mean squared error                  0.3534
+Relative absolute error                 90.3656 %
+Root relative squared error             94.8387 %
+Total Number of Instances             6006     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   <-- classified as
+ 736  82  23  50  36  74 |   a = Britney-Spears
+ 142 478  67  70 147  97 |   b = Justin-Bieber
+  81 237 258 118 213  94 |   c = Katy-Perry
+ 128 196  90 291 140 156 |   d = Lady-Gaga
+  55 267 142  86 380  71 |   e = Rihanna
+ 158 183  63 125  97 375 |   f = Taylor-Swift
+
